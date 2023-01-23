@@ -40,12 +40,12 @@ async function fetchAnimeEpisodeMetadata (id) {
         await sleep(15000)
       }
     }
-    const text = await res.text() || ''
+    const text = await res.text()
 
     const regex = /^#EXTINF:(?:[0-9]*[.])?[0-9]+/gm
 
     let duration = 0
-    for (const match of text.match(regex)) {
+    for (const match of text.match(regex) || []) {
       duration += Number(match.slice(8))
     }
     return { duration: duration.toFixed(2), intro: data.intro, number: episode.number, title: episode.title }
