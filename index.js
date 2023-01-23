@@ -82,7 +82,7 @@ async function * animeList (page) {
     page++
   }
 }
-for await (const animeID of animeList(17)) {
+for await (const animeID of animeList(42)) {
   const [malId, epData] = await fetchAnimeEpisodeMetadata(animeID)
   console.log(malId, epData)
   episodeData[malId] = epData
