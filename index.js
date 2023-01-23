@@ -40,7 +40,7 @@ async function fetchAnimeEpisodeMetadata (id) {
         await sleep(15000)
       }
     }
-    const text = await res.text()
+    const text = await res.text() || ''
 
     const regex = /^#EXTINF:(?:[0-9]*[.])?[0-9]+/gm
 
@@ -82,7 +82,7 @@ async function * animeList (page) {
     page++
   }
 }
-for await (const animeID of animeList(42)) {
+for await (const animeID of animeList(71)) {
   const [malId, epData] = await fetchAnimeEpisodeMetadata(animeID)
   console.log(malId, epData)
   episodeData[malId] = epData
