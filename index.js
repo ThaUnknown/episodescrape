@@ -30,7 +30,7 @@ async function fetchAnimeEpisodeMetadata (id) {
         await sleep(15000)
       }
     }
-    if (!data) return {}
+    if (data === true) return {}
     let res
     while (!res) {
       try {
@@ -82,7 +82,7 @@ async function * animeList (page) {
     page++
   }
 }
-for await (const animeID of animeList(72)) {
+for await (const animeID of animeList(1)) {
   const [malId, epData] = await fetchAnimeEpisodeMetadata(animeID)
   console.log(malId, epData)
   episodeData[malId] = epData
