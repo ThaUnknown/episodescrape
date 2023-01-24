@@ -57,7 +57,7 @@ async function fetchAnimeEpisodeMetadata (id) {
 let episodeData = null
 
 async function scheduleSave (page) {
-  writeFile(`./data/${page}.json`, JSON.stringify(episodeData))
+  await writeFile(`./data/${page}.json`, JSON.stringify(episodeData))
 }
 
 async function * animeList (page) {
@@ -78,7 +78,7 @@ async function * animeList (page) {
     hasNextPage = ids.length === 36
     episodeData = {}
     yield * ids
-    scheduleSave(page)
+    await scheduleSave(page)
     page++
   }
 }
