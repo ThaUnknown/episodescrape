@@ -14,10 +14,10 @@ function verifyTitle (title, episode) {
 
 const data = {}
 
-const files = await readdir('./data/')
+const files = await readdir('./data/zoro/')
 
 for (const file of files) {
-  const contents = JSON.parse(await readFile('./data/' + file, { encoding: 'utf8' }))
+  const contents = JSON.parse(await readFile('./data/zoro/' + file, { encoding: 'utf8' }))
   for (const [key, episodes] of Object.entries(contents)) {
     const validEpisodes = []
     for (const { duration, number, intro, title } of episodes) {
@@ -31,4 +31,4 @@ for (const file of files) {
 console.log(Object.values(data).reduce((prev, current) => {
   return prev + current.length
 }, 0), Object.keys(data).length)
-writeFile('./parsers/anilist.json', JSON.stringify(data))
+writeFile('./data/zoro/parsers/anilist.json', JSON.stringify(data))
